@@ -40,6 +40,12 @@ const state = {
     const display = document.querySelector('.display');
     display.textContent = state.displayedValue;
   },
+  clear: function () {
+    this.displayedValue = '0';
+    this.pendingOperation.operandA = 0;
+    this.pendingOperation.operandB = 0;
+    this.pendingOperation.operator = '';
+  },
 };
 
 function buttonListeners() {
@@ -66,6 +72,13 @@ function buttonListeners() {
         if (!state.displayedValue.includes('.')) {
           state.displayedValue += '.';
         }
+      });
+    }
+    // Clear the calculator
+    if (buttons[i].classList.contains('clear')) {
+      buttons[i].addEventListener('click', () => {
+        state.clear();
+        state.updateDisplay();
       });
     }
   }
