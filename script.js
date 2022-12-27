@@ -60,6 +60,14 @@ function buttonListeners() {
         }
       });
     }
+    // Handles decimal
+    if (buttons[i].classList.contains('decimal')) {
+      buttons[i].addEventListener('click', () => {
+        if (!state.displayedValue.includes('.')) {
+          state.displayedValue += '.';
+        }
+      });
+    }
   }
 }
 
