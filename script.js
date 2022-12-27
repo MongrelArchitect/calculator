@@ -15,7 +15,6 @@ function divide(a, b) {
 }
 
 function operate(operator, a, b) {
-  console.log(`operate: a=${a} operator=${operator} b=${b}`);
   switch(operator) {
     case '+':
       return add(a,b);
@@ -105,6 +104,26 @@ function buttonListeners() {
           state.displayedValue = operationResult;
           state.updateDisplay();
           state.displayedValue = '0';
+        }
+      });
+    }
+    // Complete any pending operations, otherwise do nothing
+    if (buttons[i].classList.contains('equals')) {
+      buttons[i].addEventListener('click', () => {
+        if (state.pendingOperation.operator !== '') {
+          // We do have one pending
+          state.pendingOperation.operandB = +state.displayedValue;
+          const operationResult = operate(
+            state.pendingOperation.operator,
+            state.pendingOperation.operandA,
+            state.pendingOperation.operandB
+          )
+          // Move result for next operation & update display
+          state.pendingOperation.operandA = operationResult;
+          state.pendingOperation.operandB = 0;
+          state.pendingOperation.operator = '';
+          state.displayedValue = operationResult;
+          state.updateDisplay();
         }
       });
     }
