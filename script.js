@@ -44,6 +44,7 @@ const state = {
     operandB: 0,
     operator: '',
   },
+  equalsPressed: false,
   updateDisplay: function () {
     const display = document.querySelector('.display');
     display.textContent = state.displayedValue;
@@ -64,6 +65,11 @@ function buttonListeners() {
       buttons[i].addEventListener('click', () => {
         // Limit by about how many numbers can fit on the display
         if (state.displayedValue.length < 13) {
+          // Reset the displayed value after equals or it concatenates
+          if (state.equalsPressed) {
+            state.equalsPressed = false;
+            state.displayedValue = '0';
+          }
           // Get rid of the leading 0 if there's no decimal
           if (state.displayedValue[0] === '0' &&
               !state.displayedValue.includes('.')) {
@@ -109,7 +115,7 @@ function buttonListeners() {
           state.pendingOperation.operandA = operationResult;
           state.pendingOperation.operandB = 0;
           state.pendingOperation.operator = buttons[i].textContent;
-          state.displayedValue = operationResult;
+          state.displayedValue = operationResult.toString();
           state.updateDisplay();
           state.displayedValue = '0';
         }
@@ -130,7 +136,8 @@ function buttonListeners() {
           state.pendingOperation.operandA = operationResult;
           state.pendingOperation.operandB = 0;
           state.pendingOperation.operator = '';
-          state.displayedValue = operationResult;
+          state.displayedValue = operationResult.toString();
+          state.equalsPressed = true;
           state.updateDisplay();
         }
       });
