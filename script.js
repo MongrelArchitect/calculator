@@ -84,7 +84,13 @@ function buttonListeners() {
     if (buttons[i].classList.contains('decimal')) {
       buttons[i].addEventListener('click', () => {
         if (!state.displayedValue.includes('.')) {
+          if (state.equalsPressed) {
+            state.equalsPressed = false;
+            state.displayedValue = '0';
+            state.updateDisplay();
+          }
           state.displayedValue += '.';
+          state.updateDisplay();
         }
       });
     }
