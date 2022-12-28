@@ -142,6 +142,19 @@ function buttonListeners() {
         }
       });
     }
+    // Change the sign
+    if (buttons[i].classList.contains('sign')) {
+      buttons[i].addEventListener('click', () => {
+        if (state.displayedValue !== '0') {
+          if (state.displayedValue[0] !== '-') {
+            state.displayedValue = `-${state.displayedValue}`;
+          } else {
+            state.displayedValue = state.displayedValue.substring(1);
+          }
+        }
+        state.updateDisplay();
+      });
+    }
   }
 }
 

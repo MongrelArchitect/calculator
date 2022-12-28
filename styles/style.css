@@ -14,7 +14,7 @@ body {
 
 .button {
   align-items: center;
-  background-color: #ed7745;
+  background-color: #5f7bfc;
   border-radius: 20px;
   box-shadow: 2px 2px 2px #444;
   cursor: pointer;
@@ -61,7 +61,9 @@ body {
   width: 600px;
 }
 
-.clear {
+.clear,
+.equals {
+  background-color: #e055fc;
   width: 240px;
 }
 
@@ -88,10 +90,10 @@ body {
   width: 98%;
 }
 
-.equals {
-  width: 240px;
+.operator {
+  background-color: #ed7745;
 }
 
-.zero {
-  width: 240px;
+.sign {
+  background-color: #05F560;
 }
