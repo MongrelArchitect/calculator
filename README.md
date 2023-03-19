@@ -5,3 +5,4 @@ as part of The Odin Project:
 
 https://www.theodinproject.com/lessons/foundations-calculator
 
+[Live demo](https://mongrelarchitect.github.io/calculator).
